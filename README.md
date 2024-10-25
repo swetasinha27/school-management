@@ -1,2 +1,2 @@
-## Frontend Link
-[View the Frontend](https://swetasinha27.github.io/school-management)
+### Frontend Link
+[View Frontend](http://swetasinha27.github.io/school-management)
