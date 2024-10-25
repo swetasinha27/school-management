@@ -1,9 +1,11 @@
 const express = require('express');
+const mongoose = require('mongoose');  
 const router = express.Router();
 const Class = require('../models/Class');
 
-// GET all classes
+
 router.get('/', async (req, res) => {
+    console.log('GET /classes called');
     try {
         const classes = await Class.find();
         res.status(200).send(classes);
@@ -13,12 +15,13 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Create new class
+
 router.post('/', async (req, res) => {
+    console.log('POST /classes called with data:', req.body);
     const { name, year, teacherID, studentFees } = req.body;
 
-    // Validate teacherID
     if (!mongoose.Types.ObjectId.isValid(teacherID)) {
+        console.error('Invalid teacherID format:', teacherID);
         return res.status(400).send({ error: 'Invalid teacherID format' });
     }
 
@@ -26,7 +29,7 @@ router.post('/', async (req, res) => {
         const newClass = new Class({
             name,
             year,
-            teacher: new mongoose.Types.ObjectId(teacherID),  // Correct usage
+            teacher: new mongoose.Types.ObjectId(teacherID),
             studentFees,
             studentList: []
         });

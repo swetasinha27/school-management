@@ -11,6 +11,9 @@ mongoose.connect('mongodb://localhost:27017/schoolDB', { useNewUrlParser: true, 
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error('MongoDB connection error:', err));
 
+
+console.log('server.js is setting up routes');
+
 const classRoutes = require('./routes/classRoutes');
 app.use('/classes', classRoutes);
 
